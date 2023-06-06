@@ -4,7 +4,18 @@ const Header = ({ course }) => {
   )
 }
 
-const Content = ({ topic, exercises}) => {
+const Content = ({ topics, exercises }) => {
+  return (
+    <div>
+      <Part topic = {topics.one} exercises={exercises.one}/>
+      <Part topic = {topics.two} exercises={exercises.two}/>
+      <Part topic = {topics.three} exercises={exercises.three} />
+    </div>
+    
+  )
+}
+
+const Part = ({ topic, exercises }) => {
   return (
     <p>{topic} {exercises}</p>
   )
@@ -28,9 +39,7 @@ const App = () => {
   return (
     <div>
       <Header course={course}/>
-      <Content topic={part1} exercises={exercises1} />
-      <Content topic={part2} exercises={exercises2} />
-      <Content topic={part3} exercises={exercises3} />
+      <Content topics={{'one': part1, 'two': part2, 'three': part3}} exercises={{'one': exercises1, 'two': exercises2, 'three': exercises3}} />
       <Total number={exercises1+exercises2+exercises3} />
     </div>
   )
