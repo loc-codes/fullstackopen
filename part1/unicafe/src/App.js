@@ -17,7 +17,7 @@ const Statistic = ({ name, number }) => {
   return (
     <div>{name} {number}</div>
   )
-}
+} //already defined from previous exercise
 
 const App = () => {
   // save clicks of each button to its own state
