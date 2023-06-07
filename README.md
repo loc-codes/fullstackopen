@@ -1,8 +1,8 @@
-###Full Stack Open
+# Full Stack Open
 My exercise repo for FullStackOpen, a course genereously provided for free by University of Helsinki.
 
 
-##Course Contents
+## Course Contents
 0. Fundamentals of Web apps
 1. Introduction to React
 2. Communicating with server
@@ -16,7 +16,7 @@ My exercise repo for FullStackOpen, a course genereously provided for free by Un
 
 
 
-##Some information from the course website
+## Some information from the course website
 - This course serves as an introduction to modern web application development with JavaScript. The main focus is on building single page applications with ReactJS that use REST APIs built with Node.js. The course also contains a section on GraphQL, a modern alternative to REST APIs.
 - The course covers testing, configuration and environment management, the use of databases for storing the application’s data amongst other things.
 - The course is totally free of charge. You can get a certificate and even the University of Helsinki ECTS credits for free.
