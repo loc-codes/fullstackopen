@@ -21,3 +21,5 @@ My exercise repo for FullStackOpen, a course genereously provided for free by Un
 - The course covers testing, configuration and environment management, the use of databases for storing the application’s data amongst other things.
 - The course is totally free of charge. You can get a certificate and even the University of Helsinki ECTS credits for free.
 - The course is worth 5-14 credits, and the content is the same as in the Full stack course held at the Department of Computer Science at the University of Helsinki in Spring 2023
+
+##### For more info: (https://fullstackopen.com/en/about)
