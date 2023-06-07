@@ -1,11 +1,10 @@
-//templated using model solution from Part 1
 const Header = ({ name }) => {
   return (
     <h1>{name}</h1>
   )
 }
 
-const Total = ({ sum }) => <p>Number of exercises {sum}</p>
+const Total = ({ sum }) => <p>total of {sum} exercises</p>
 
 const Part = ({ part }) => {
   return (
@@ -14,9 +13,12 @@ const Part = ({ part }) => {
     </p>
   )
 }
-  
 
 const Content = ({ parts }) => {
+  const sum =  parts.reduce((s,p) => {
+    return s + p.exercises
+  }, 0)
+
   return (
   <>
     {parts.map(part => {
@@ -24,6 +26,7 @@ const Content = ({ parts }) => {
       <Part key={part.id} part={part} />
       )
     })}
+    <Total sum = {sum} />
   </>
   )
 }
@@ -58,8 +61,8 @@ const App = () => {
         id: 3
       },
       {
-        name: 'test',     //added 4th part to satsify "application must work regardless of number of parts"
-        exercises: 2,
+        name: 'Redux',
+        exercises: 11,
         id: 4
       }
     ]
