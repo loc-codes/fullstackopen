@@ -1,6 +1,8 @@
 # Full Stack Open
 My exercise repo for FullStackOpen, a course genereously provided for free by University of Helsinki.
 
+The quality of materials is in-line with studying at Go8 universities in Australia. The University of Helenski is ranked #104 in the world for Computer Science (QS 2023),  just behind Monash University and University of Sydney, and ahead of the University of Queensland.
+
 
 ## Course Contents
 0. Fundamentals of Web apps
