@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "The Acceleration of Addictiveness",
+    "author": "Paul Graham",
+    "url": "https://www.paulgraham.com/addiction.html#:~:text=The%20world%20is%20more%20addictive,did%20in%20the%20last%2040.",
+    "likes": 0
+}
