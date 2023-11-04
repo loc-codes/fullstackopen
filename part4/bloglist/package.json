@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "lint": "eslint .",
     "test": "jest --verbose"
   },
   "author": "Lachlan Young",
@@ -17,6 +18,7 @@
     "mongoose": "^8.0.0"
   },
   "devDependencies": {
+    "eslint": "^8.53.0",
     "jest": "^29.7.0",
     "nodemon": "^3.0.1"
   }
