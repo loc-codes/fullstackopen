@@ -57,6 +57,33 @@ test('Verify POST makes a new blog entry', async () => {
     expect(numberOfNewBlogs).toEqual(numberOfOldBlogs + 1)
 })
 
+test('Verify likes defaults to zero when missing', async () => {
+    const noLikes = {
+        'title': 'Why I Am a Bad Correspondent',
+        'author': 'Neal Stephenson',
+        'url': 'https://nealstephenson.com/why-i-am-a-bad-correspondent.html'
+    }
+
+    const response = await api
+        .post('/api/blogs')
+        .send(noLikes)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    expect(response.body.likes).toBe(0)
+})
+
+test('Verify missing title/author returns 400', async () => {
+    const badRequest = {
+        'url': 'badrequest.blog.com'
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(badRequest)
+        .expect(400)
+})
+
 afterAll(async () => {
     await mongoose.connection.close()
 })
