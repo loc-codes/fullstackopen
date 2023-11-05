@@ -1,3 +1,5 @@
+const Blog = require('../models/blog')
+
 const initialBlogs = [
     {
         'title': 'The Shockingly Simple Math Behind Early Retirement',
@@ -13,6 +15,19 @@ const initialBlogs = [
     }
 ]
 
+const nonExistingId = async() => {
+    const blog = new Blog({ 'content': 'Delete Me', 'author': 'dummy author', 'likes': 456 })
+    await blog.save()
+    await blog.deleteOne()
+
+    return blog.id.toString()
+}
+
+const blogsInObj = async () => {
+    const blogs = await Blog.find({})
+    return blogs.map(blog => blog.toJSON())
+}
+
 module.exports = {
-    initialBlogs
+    initialBlogs, nonExistingId, blogsInObj
 }
