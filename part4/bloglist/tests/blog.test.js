@@ -1,4 +1,6 @@
-const blogList = [
+const listHelper = require('../utils/list_helper')
+
+const initialBlogs = [
     {
         'title': 'The Shockingly Simple Math Behind Early Retirement',
         'author': 'Mr Money Moustache',
@@ -29,7 +31,6 @@ const blogList = [
     }
 ]
 
-const listHelper = require('../utils/list_helper')
 test('dummy returns one', () => {
     const blogs = []
     const result = listHelper.dummy(blogs)
@@ -54,7 +55,7 @@ describe('Total likes', () => {
 
 describe('Most likes', () => {
     test('when a list has multiple blogs, return the blog with the most likes', () => {
-        const result = listHelper.favouriteBlog(blogList)
+        const result = listHelper.favouriteBlog(initialBlogs)
         expect(result).toEqual({
             title: 'The Shockingly Simple Math Behind Early Retirement',
             author: 'Mr Money Moustache',
@@ -65,7 +66,7 @@ describe('Most likes', () => {
 
 describe('Most blogs', () => {
     test('Return the author with the most blog entries', () => {
-        const result = listHelper.mostBlogs(blogList)
+        const result = listHelper.mostBlogs(initialBlogs)
         expect(result).toEqual({
             author: 'Mr Money Moustache',
             blogs: 2
@@ -75,7 +76,7 @@ describe('Most blogs', () => {
 
 describe('Most likes', () => {
     test('Return the author with the most likes across all blog entries', () => {
-        const result = listHelper.mostLikes(blogList)
+        const result = listHelper.mostLikes(initialBlogs)
         expect(result).toEqual({
             author: 'Mr Money Moustache',
             likes: 238
