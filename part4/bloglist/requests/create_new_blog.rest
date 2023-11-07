@@ -2,7 +2,9 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Why I Am a Bad Correspondent",
-    //"author": "Neal Stephenson",
-    "url": "https://nealstephenson.com/why-i-am-a-bad-correspondent.html"
+    "title": "The Shockingly Simple Math Behind Early Retirement",
+    "author": "Mr Money Moustache",
+    "url": "https://www.mrmoneymustache.com/2012/01/13/the-shockingly-simple-math-behind-early-retirement/",
+    "likes": 162,
+    "userId": "6549996a12e94bc40bb0340c"
 }

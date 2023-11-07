@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const bcrypt = require('bcrypt')
 const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+const User = require('../models/user')
 mongoose.set('bufferTimeoutMS', 30000)
 jest.setTimeout(30000)
 
@@ -34,7 +36,7 @@ describe('GET Request Testing', () => {
 
 describe('POST Request Testing', () => {
     test('Verify POST makes a new blog entry', async () => {
-        const oldBlogs = await helper.blogsInObj()
+        const oldBlogs = await helper.blogsInDb()
 
         const newBlog = {
             'title': 'Why I Am a Bad Correspondent',
@@ -54,7 +56,7 @@ describe('POST Request Testing', () => {
 
         expect(responseBlog).toEqual(newBlog)
 
-        const newBlogs = await helper.blogsInObj()
+        const newBlogs = await helper.blogsInDb()
         expect(newBlogs.length).toEqual(oldBlogs.length + 1)
     })
 
@@ -89,14 +91,14 @@ describe('POST Request Testing', () => {
 
 describe('DELETE Request Testing', () => {
     test('Verify Succesful Delete responds 204', async () => {
-        const blogsAtStart = await helper.blogsInObj()
+        const blogsAtStart = await helper.blogsInDb()
         const blogToDelete = blogsAtStart[0]
 
         await api
             .delete(`/api/blogs/${blogToDelete.id}`)
             .expect(204)
 
-        const blogsAtEnd = await helper.blogsInObj()
+        const blogsAtEnd = await helper.blogsInDb()
 
         expect(blogsAtEnd).toHaveLength(
             blogsAtStart.length - 1
@@ -108,7 +110,7 @@ describe('DELETE Request Testing', () => {
 
 describe('PUT REQUEST Testing', () => {
     test('Verify Put updates likes', async () => {
-        const blogsAtStart = await helper.blogsInObj()
+        const blogsAtStart = await helper.blogsInDb()
         const blogToUpdate = blogsAtStart[0]
         const originalLikes = blogToUpdate.likes
         blogToUpdate.likes += 1
@@ -119,10 +121,68 @@ describe('PUT REQUEST Testing', () => {
             .expect(200)
             .expect('Content-Type', /application\/json/)
 
-        const blogsAtEnd = await helper.blogsInObj()
+        const blogsAtEnd = await helper.blogsInDb()
         const updatedBlog = blogsAtEnd[0]
         expect(updatedBlog.likes).toBe(originalLikes + 1)
     })
+})
+
+describe('User testing', () => {
+    beforeEach(async () => {
+        await User.deleteMany({})
+        const passwordHash = await bcrypt.hash('sekret', 10)
+        const user = new User({ username: 'root', passwordHash })
+        await user.save()
+    })
+
+    test('Verify new user can be created', async () => {
+        const usersAtStart = await helper.usersInDb()
+        const newUser = { username: 'admin', name: 'lyoung', password: 'StrongP@ss123' }
+
+        await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(201)
+            .expect('Content-Type', /application\/json/)
+
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd.length).toBe(usersAtStart.length + 1)
+    })
+
+    test('Verify that existing user can\'t be overwritten', async () => {
+        const usersAtStart = await helper.usersInDb()
+        const newUser = { username: 'root', name: 'superUser', password: 'P455w0rd!!' }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('expected `username` to be unique')
+
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd.length).toBe(usersAtStart.length)
+    })
+
+    test('creation fails when username is less than 3 characters', async () => {
+        const usersAtStart = await helper.usersInDb()
+        const newUser = {
+            username: 'jo',
+            name: 'jo mama',
+            password: 'StrongP@ss1'
+        }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('Username must be at least 3 characters long')
+        console.log(result.body)
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd).toEqual(usersAtStart)
+    })
+
 })
 
 afterAll(async () => {

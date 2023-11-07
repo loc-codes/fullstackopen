@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2NTQ5OTk2YTEyZTk0YmM0MGJiMDM0MGMiLCJpYXQiOjE2OTkzNDEwNzZ9.LsKDPoRaJGjTSW-cpFnZG4NAk7DOV7wiqS_a26kaBdA
+
+{
+    "title": "How to secure a REST API using JWT authentication",
+    "author": "Fernando Doglio",
+    "url": "https://blog.logrocket.com/secure-rest-api-jwt-authentication",
+    "likes": 7
+}

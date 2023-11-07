@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2NTQ3M2IxOWFhMTQzZmM1ZTg3YmZhZDciLCJpYXQiOjE2OTkzMTcwMjJ9.cRvmMHZqqPTjIotQaGCaY-tSeDPShWXh6bT94qAJSJ4
+
+{
+    "content": "Its really cool seeing how tokens work on the backend!",
+    "important": true
+}
