@@ -1,12 +1,15 @@
 const blogsRouter = require('express').Router()
-const jwt = require('jsonwebtoken')
 const Blog = require('../models/blog')
 const User = require('../models/user')
-const middleware = require('../utils/middleware')
 
 blogsRouter.get('/', async (request, response) => {
     const blogs = await Blog.find({}).populate('user', { username: 1, name: 1, id: 1 })
     response.json(blogs)
+})
+
+blogsRouter.get('/:id', async (request, response) => {
+    const blog = await Blog.findById(request.params.id)
+    response.json(blog)
 })
 
 blogsRouter.post('/', async (request, response) => {
@@ -20,11 +23,8 @@ blogsRouter.post('/', async (request, response) => {
         response.status(400).json({ 'Error': 'Missing author or title field' })
     }
 
-    const decodedToken = jwt.verify(request.token, process.env.SECRET)
-    if (!decodedToken) {
-        response.status(401).json({ error: 'token invalid' })
-    }
-    const user = await User.findById(decodedToken.id)
+    const user = request.user
+    console.log(user)
 
     const blog = new Blog({
         title: body.title,
@@ -33,9 +33,11 @@ blogsRouter.post('/', async (request, response) => {
         likes: body.likes,
         user: user.id
     })
+
     const savedBlog = await blog.save()
-    user.blogs = user.blogs.concat(savedBlog._id)
-    await user.save()
+    const mongoUser = await User.findById(user.id)
+    mongoUser.blogs = mongoUser.blogs.concat(savedBlog._id)
+    await mongoUser.save()
     response
         .status(201)
         .json(savedBlog)
@@ -43,8 +45,21 @@ blogsRouter.post('/', async (request, response) => {
 
 blogsRouter.delete('/:id', async (request, response) => {
     const blogId = request.params.id
-    await Blog.findByIdAndDelete(blogId)
-    response.status(204).json({ 'Message': `Sucessfully deleted ${blogId}` }).end()
+    const requestingUser = request.user
+    const requestingUserId = requestingUser.id.toString()
+    const blog = await Blog.findById(blogId)
+    if (!blog) {
+        return response.status(404).json({ 'Message': 'Could not find blog' })
+    }
+    const blogUserId = blog.user.toString()
+
+    if (requestingUserId === blogUserId){
+        await Blog.findByIdAndDelete(blogId)
+        return response.status(204).end()
+    }
+    else {
+        return response.status(403).json({ 'Error': 'This blog belonds to another user' })
+    }
 })
 
 blogsRouter.put('/:id', async (request, response) => {
