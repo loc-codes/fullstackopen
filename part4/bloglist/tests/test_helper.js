@@ -1,6 +1,21 @@
 const Blog = require('../models/blog')
 const User = require('../models/user')
 
+const initialUsers = [
+    {
+        username: 'admin',
+        name: 'Lachlan Young',
+        password: 'dummyP@ss1',
+        blogs: []
+    },
+    {
+        username: 'hburgers',
+        name: 'Hannibal Buress',
+        password: 'dummyP@ss2',
+        blogs: []
+    },
+]
+
 const initialBlogs = [
     {
         'title': 'The Shockingly Simple Math Behind Early Retirement',
@@ -15,6 +30,8 @@ const initialBlogs = [
         'likes': 0,
     }
 ]
+
+
 
 const nonExistingId = async() => {
     const blog = new Blog({ 'content': 'Delete Me', 'author': 'dummy author', 'likes': 456 })
@@ -35,5 +52,5 @@ const usersInDb = async () => {
 }
 
 module.exports = {
-    initialBlogs, nonExistingId, blogsInDb, usersInDb
+    initialBlogs, initialUsers, nonExistingId, blogsInDb, usersInDb
 }

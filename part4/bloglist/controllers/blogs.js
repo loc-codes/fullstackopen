@@ -45,8 +45,7 @@ blogsRouter.post('/', async (request, response) => {
 
 blogsRouter.delete('/:id', async (request, response) => {
     const blogId = request.params.id
-    const requestingUser = request.user
-    const requestingUserId = requestingUser.id.toString()
+    const requestingUserId = request.user.id.toString()
     const blog = await Blog.findById(blogId)
     if (!blog) {
         return response.status(404).json({ 'Message': 'Could not find blog' })
@@ -55,6 +54,9 @@ blogsRouter.delete('/:id', async (request, response) => {
 
     if (requestingUserId === blogUserId){
         await Blog.findByIdAndDelete(blogId)
+        const mongoUser = await User.findById(requestingUserId)
+        mongoUser.blogs = mongoUser.blogs.filter(b => b.id !== blogId)
+        await mongoUser.save()
         return response.status(204).end()
     }
     else {
