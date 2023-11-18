@@ -1,41 +1,48 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const LoginForm = ({
-    handleLogin
-   }) => {
-
-    const [username, setUsername] = useState('') 
+const LoginForm = ({ handleLogin }) => {
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        handleLogin({ username, password})
+        handleLogin({ username, password })
         setUsername('')
         setPassword('')
     }
- 
+
     return (
-     <div>
-       <h2>Login</h2>
-       <form onSubmit={handleSubmit}>
-         <div>
-           username
-           <input
-             value={username}
-             onChange={({ target }) => setUsername(target.value)}
-           />
-        </div> 
         <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+           username
+                    <input
+                        value={username}
+                        onChange={({ target }) => setUsername(target.value)}
+                    />
+                </div>
+                <div>
            password
-           <input
-             type="password"
-             value={password}
-             onChange={({ target }) => setPassword(target.value)}
-            /> 
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={({ target }) => setPassword(target.value)}
+                    />
+                </div>
+                <button type="submit">login</button>
+            </form>
         </div>
-        <button type="submit">login</button>
-       </form>
-    </div> 
     )
- }
- export default LoginForm
+}
+
+LoginForm.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    handleUsernameChange: PropTypes.func.isRequired,
+    handlePasswordChange: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+}
+
+export default LoginForm
