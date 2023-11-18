@@ -73,6 +73,51 @@ const App = () => {
     }
   }
 
+  const handleLike = async (updatedBlog) => {
+    try {
+      await blogService.update(updatedBlog)
+      setMessageType('success')
+      setNotificationMessage(`You liked ${updatedBlog.title} by ${updatedBlog.author}!`)
+
+      fetchBlogs()
+      
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 5000);
+    }
+    catch (exception) {
+      setMessageType('error')
+      setNotificationMessage(exception.message)
+      console.log(exception)
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 5000);
+    }
+  }
+
+  const handleDelete = async(id) => {
+    try {
+      await blogService.remove(id)
+      setMessageType('success')
+      setNotificationMessage(`Successfully deleted`)
+
+      fetchBlogs()
+      
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 5000);
+    }
+
+    catch (exception) {
+      setMessageType('error')
+      setNotificationMessage(exception.message)
+      console.log(exception)
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 5000);
+    }
+  }
+
   const UserDetails = () => (
     <div>
       {user.name} logged in
@@ -98,9 +143,10 @@ const App = () => {
       <Togglable buttonLabel = 'New Blog'>
         <BlogForm handleBlog={handleBlog} />
       </Togglable>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
+      {blogs
+        .sort((a, b) => b.likes - a.likes)
+        .map(blog => <Blog key={blog.id} blog={blog} handleLike={handleLike} handleDelete={handleDelete}/>)
+      }
     </div>
   )
 
