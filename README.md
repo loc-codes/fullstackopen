@@ -5,16 +5,23 @@ The course quality is at the standard of Go8 universities in Australia. The Univ
 
 
 ## Course Contents
-0. Fundamentals of Web apps
-1. Introduction to React
-2. Communicating with server
-3. Programming a server with NodeJS and Express
-4. Testing Express servers & user administration
-5. Testing React Apps
-6. Advanced State Management
-7.  React Router, Custom Hooks, Styling and Webpack
-8. GraphQL
-9. TypeScript
+
+| Section Number | Course Contents                                  | Status      |
+|----------------|--------------------------------------------------|-------------|
+| 0              | Fundamentals of Web apps                         | Completed   |
+| 1              | Introduction to React                            | Completed   |
+| 2              | Communicating with server                        | Completed   |
+| 3              | Programming a server with NodeJS and Express     | Completed   |
+| 4              | Testing Express servers & user administration    | Completed   |
+| 5              | Testing React Apps                               | Pending     |
+| 6              | Advanced State Management                        | Pending     |
+| 7              | React Router, Custom Hooks, Styling and Webpack  |             |
+| 8              | GraphQL                                          |             |
+| 9              | TypeScript                                       |             |
+| 10             | React Native                                     |             |
+| 11             | CI/CD and Github Actions                         |             |
+| 12             | Containers & Docker                              |             |
+| 13             | Using Relational Databases                       |             |
 
 
 
