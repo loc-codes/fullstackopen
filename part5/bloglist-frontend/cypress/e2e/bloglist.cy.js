@@ -48,6 +48,18 @@ describe('Blog app', function() {
                 cy.get('#url-input').type('Cypress URL')
                 cy.get('#blog-submit').click()
             })
+
+            describe('When blog is created', function () {
+                beforeEach(function () {
+                    cy.createBlog({ title: 'Cypress Blog', author: 'Cypress Author', url: 'www.crypressurl.com' })
+                })
+
+                it('Blog can be liked', function () {
+                    cy.contains('View').click()
+                    cy.contains('like').click()
+                    cy.contains('Likes: 1')
+                })
+            })
         })
     })
 })
