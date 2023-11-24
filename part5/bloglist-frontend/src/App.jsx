@@ -110,7 +110,12 @@ const App = () => {
 
         catch (exception) {
             setMessageType('error')
-            setNotificationMessage(exception.message)
+            if (exception.response.status === 401){
+                setNotificationMessage('Oops! You need to be the creator of this blog to delete it.')
+            }
+            else {
+                setNotificationMessage(exception.message)
+            }
             console.log(exception)
             setTimeout(() => {
                 setNotificationMessage(null)

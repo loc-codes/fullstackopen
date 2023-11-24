@@ -59,6 +59,48 @@ describe('Blog app', function() {
                     cy.contains('like').click()
                     cy.contains('Likes: 1')
                 })
+
+                it('Blog can be deleted', function () {
+                    cy.contains('View').click()
+                    cy.contains('Delete').click()
+                    cy.contains('Successfully deleted')
+                })
+
+                it('Blog can only be deleted by owner', function() {
+                    cy.contains('Log Out').click()
+                    const unauthorisedUser = {
+                        name: 'bad user',
+                        username: 'user',
+                        password: 'StrongP@ss3'
+                    }
+                    cy.request('POST', `${Cypress.env('BACKEND')}/users`, unauthorisedUser)
+                    cy.login({ username: 'user', password: 'StrongP@ss3' })
+                    cy.contains('View').click()
+                    cy.contains('Delete').click()
+                    cy.get('.error')
+                        .should('contain', 'Oops! You need to be the creator of this blog to delete it.')
+                        .and('have.css', 'color', 'rgb(255, 0, 0)')
+                        .and('have.css', 'border-style', 'solid')
+                })
+
+                it('Blogs should be ordered by likes', function() {
+                    cy.createBlog({ title: 'More popular blog', author: 'Popular Author', url: 'www.popularblog.com' })
+                    const lessLikes = cy.get('.blog').eq(0)
+                    const moreLikes = cy.get('.blog').eq(1)
+
+                    lessLikes.within(() => {
+                        cy.contains('View').click()
+                        cy.contains('like').click()
+                    })
+                    moreLikes.within(() => {
+                        cy.contains('View').click()
+                        cy.contains('like').click()
+                        cy.contains('like').click()
+                    })
+
+                    cy.get('.blog').eq(0).should('contain', 'More popular blog')
+                    cy.get('.blog').eq(1).should('contain', 'Cypress Blog')
+                })
             })
         })
     })
