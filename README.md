@@ -8,13 +8,13 @@ The course quality is at the standard of Go8 universities in Australia. The Univ
 
 | Section Number | Course Contents                                  | Status        |
 |----------------|--------------------------------------------------|-------------  |
-| 0              | Fundamentals of Web apps                         | :white_check_mark:Completed  |
-| 1              | Introduction to React                            | :white_check_mark:Completed  |
-| 2              | Communicating with server                        | :white_check_mark:Completed  |
-| 3              | Programming a server with NodeJS and Express     | :white_check_mark:Completed  |
-| 4              | Testing Express servers & user administration    | :white_check_mark:Completed  |
-| 5              | Testing React Apps                               | :white_check_mark:Completed  |
-| 6              | Advanced State Management                        | :hourglass_flowing_sand:Pending |
+| 0              | Fundamentals of Web apps                         | Completed :white_check_mark:|
+| 1              | Introduction to React                            | Completed :white_check_mark:|
+| 2              | Communicating with server                        | Completed :white_check_mark:|
+| 3              | Programming a server with NodeJS and Express     | Completed :white_check_mark:|
+| 4              | Testing Express servers & user administration    | Completed :white_check_mark:|
+| 5              | Testing React Apps                               | Completed :white_check_mark:|
+| 6              | Advanced State Management                        | Pending :hourglass_flowing_sand:|
 | 7              | React Router, Custom Hooks, Styling and Webpack  |               |
 | 8              | GraphQL                                          | Skipped for now|
 | 9              | TypeScript                                       | Skipped for now|
