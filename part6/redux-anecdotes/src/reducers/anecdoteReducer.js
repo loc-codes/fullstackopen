@@ -33,15 +33,11 @@ const reducer = (state = initialState, action) => {
         .sort((a, b) => b.votes - a.votes)
     }
     case 'NEW_ANECDOTE': {
-      console.log('NEW: Updated global state')
       return state.concat(action.payload)
     }
+    default: 
+      return state
   }
-
-  console.log('state now: ', state)
-  console.log('action', action)
-
-  return state
 }
 
 export const addVote = (id) => {
