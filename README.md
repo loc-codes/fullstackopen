@@ -15,15 +15,15 @@ The course quality is at the standard of Go8 universities in Australia. The Univ
 | 4              | Testing Express servers & user administration    | Completed ✅   |
 | 5              | Testing React Apps                               | Completed ✅   |
 | 6              | Advanced State Management                        | Pending ⏳     |
-| 7              | React Router, Custom Hooks, Styling, and Webpack |               |
+| 7              | React Router, Custom Hooks, Styling, and Webpack | Pending ⏳     |
 
 ### Electives/Extensions (Sections 8-13)
 | Section Number | Course Contents                                  | Status             |
 |----------------|--------------------------------------------------|--------------------|
-| 8              | GraphQL                                          | Skipped for now    |
-| 9              | TypeScript                                       | Skipped for now    |
-| 10             | React Native                                     | Skipped for now    |
-| 11             | CI/CD and Github Actions                         |                    |
+| 8              | GraphQL                                          |                    |
+| 9              | TypeScript                                       |                    |
+| 10             | React Native                                     |                    |
+| 11             | CI/CD and Github Actions                         | Pending ⏳         |
 | 12             | Containers & Docker                              |                    |
 | 13             | Using Relational Databases                       |                    |
 
