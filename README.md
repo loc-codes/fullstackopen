@@ -5,23 +5,27 @@ The course quality is at the standard of Go8 universities in Australia. The Univ
 
 
 ## Course Contents
-
+### Core Modules (Sections 0-7)
 | Section Number | Course Contents                                  | Status        |
-|----------------|--------------------------------------------------|-------------  |
-| 0              | Fundamentals of Web apps                         | Completed :white_check_mark:|
-| 1              | Introduction to React                            | Completed :white_check_mark:|
-| 2              | Communicating with server                        | Completed :white_check_mark:|
-| 3              | Programming a server with NodeJS and Express     | Completed :white_check_mark:|
-| 4              | Testing Express servers & user administration    | Completed :white_check_mark:|
-| 5              | Testing React Apps                               | Completed :white_check_mark:|
-| 6              | Advanced State Management                        | Pending :hourglass_flowing_sand:|
-| 7              | React Router, Custom Hooks, Styling and Webpack  |               |
-| 8              | GraphQL                                          | Skipped for now|
-| 9              | TypeScript                                       | Skipped for now|
-| 10             | React Native                                     | Skipped for now|
-| 11             | CI/CD and Github Actions                         |               |
-| 12             | Containers & Docker                              |               |
-| 13             | Using Relational Databases                       |               |
+|----------------|--------------------------------------------------|---------------|
+| 0              | Fundamentals of Web apps                         | Completed ✅   |
+| 1              | Introduction to React                            | Completed ✅   |
+| 2              | Communicating with server                        | Completed ✅   |
+| 3              | Programming a server with NodeJS and Express     | Completed ✅   |
+| 4              | Testing Express servers & user administration    | Completed ✅   |
+| 5              | Testing React Apps                               | Completed ✅   |
+| 6              | Advanced State Management                        | Pending ⏳     |
+| 7              | React Router, Custom Hooks, Styling, and Webpack |               |
+
+### Electives/Extensions (Sections 8-13)
+| Section Number | Course Contents                                  | Status             |
+|----------------|--------------------------------------------------|--------------------|
+| 8              | GraphQL                                          | Skipped for now    |
+| 9              | TypeScript                                       | Skipped for now    |
+| 10             | React Native                                     | Skipped for now    |
+| 11             | CI/CD and Github Actions                         |                    |
+| 12             | Containers & Docker                              |                    |
+| 13             | Using Relational Databases                       |                    |
 
 
 
