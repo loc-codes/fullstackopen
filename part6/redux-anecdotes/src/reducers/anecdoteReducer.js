@@ -20,10 +20,42 @@ const asObject = (anecdote) => {
 const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'VOTE': {
+      const id = action.payload.id
+      const beforeVote = state.find(anecdote => anecdote.id === id)
+      const afterVote = {
+        ...beforeVote,
+        votes: beforeVote.votes + 1
+      }
+      return state
+        .map(anecdote => anecdote.id === id ? afterVote : anecdote)
+        .sort((a, b) => b.votes - a.votes)
+    }
+    case 'NEW_ANECDOTE': {
+      console.log('NEW: Updated global state')
+      return state.concat(action.payload)
+    }
+  }
+
   console.log('state now: ', state)
   console.log('action', action)
 
   return state
+}
+
+export const addVote = (id) => {
+  return ({
+    type: 'VOTE',
+    payload: { id }
+  })
+}
+
+export const createAnecdote = (anecdote) => {
+  return ({
+    type: 'NEW_ANECDOTE',
+    payload: asObject(anecdote)
+  })
 }
 
 export default reducer
