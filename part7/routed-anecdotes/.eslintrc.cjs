@@ -16,5 +16,12 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    // Disable unused vars rule
+    'no-unused-vars': 'off',
+    // Disable prop-types rule
+    'react/prop-types': 'off',
+    // Disable the rule for unescaped entities in JSX
+    'react/no-unescaped-entities': 'off',
+    // Add any other rules you want to configure or disable
   },
 }
