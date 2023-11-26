@@ -1,12 +1,16 @@
+import { useEffect } from 'react'
 import NewNote from './Components/NewNote'
 import Notes from './Components/Notes'
 import VisibilityFilter from './Components/VisibilityFilter'
+import { useDispatch } from 'react-redux'
+import { initializeNotes } from './reducers/noteReducer'
 
 
 const App = () => {
-  const filterSelected = (value) => {
-    console.log(value)
-  }
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(initializeNotes())
+  }, [])
 
   return(
     <div> 
