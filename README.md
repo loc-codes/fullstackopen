@@ -14,7 +14,7 @@ The course quality is at the standard of Go8 universities in Australia. The Univ
 | 3              | Programming a server with NodeJS and Express     | Completed ✅   |
 | 4              | Testing Express servers & user administration    | Completed ✅   |
 | 5              | Testing React Apps                               | Completed ✅   |
-| 6              | Advanced State Management                        | Pending ⏳     |
+| 6              | Advanced State Management                        | Completed ✅   |
 | 7              | React Router, Custom Hooks, Styling, and Webpack | Pending ⏳     |
 
 ### Electives/Extensions (Sections 8-13)
